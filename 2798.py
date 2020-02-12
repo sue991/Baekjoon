@@ -2,7 +2,7 @@ N,M = map(int, input().split())
 
 cards = list(map(int, input().split()))
 
-sum_cards = 1
+sum_cards = 0
 
 for i in range(len(cards)-2):
     for j in range(i+1,len(cards)-1):
