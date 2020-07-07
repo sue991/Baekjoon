@@ -5,15 +5,12 @@ dy = [0,0,1,-1]
 cnt = 0 #단지 수
 houses=[]
 
-
 N = int(input())
 visited = [[0 for _ in range(N)] for _ in range(N)]
 apartment = []
 for _ in range(N):
     tmp = [int(i) for i in input()]
     apartment.append(tmp)
-
-
 
 def bfs(x,y):
     q = deque()
