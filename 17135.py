@@ -38,7 +38,6 @@ for x in archer:
                             target[k] = (i,j)
 
         for idx,(i,j) in enumerate(target): 
-
             if Map[i][j] == 1 and i >= 0 and j >= 0:
                 Map[i][j] = 0
                 kill += 1
