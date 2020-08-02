@@ -12,39 +12,31 @@ def bfs(baby):
         visited = [[0 for _ in range(N)] for _ in range(N)]
         n = 0
         q = deque()
-        q.append((a,b))
+        d = 0
+        q.append((d,a,b))
         dx = [1,-1,0,0]
         dy = [0,0,1,-1]
-        # print("fish :",fx,fy)
+        
         while q:
-            # print("q:",q)
-            x,y = q.popleft()
-            # print("x,y:",x,y)
+            dis,x,y = q.popleft()
+            dis += 1
+
             if visited[x][y] == 0:
                 visited[x][y] = 1
             for k in range(4):
                 nx = x + dx[k]
                 ny = y + dy[k]
                 if 0 <= nx < N and 0 <= ny < N:
-                    # print("nx,ny:",nx,ny)
-                    if visited[ny][nx] == 0:
-                        print("n,f",nx,fx,ny,fy)
+                    if visited[nx][ny] == 0:
                         if nx == fx and ny == fy:
-                            n += 1
-                            dist.append((n,nx,ny))
-                            print("append:",n,nx,ny)
+                            dist.append((dis,nx,ny))
                             q.clear()
                             break
                         elif sea[nx][ny] > size:
                             visited[nx][ny] = 1
                         else:
                             visited[nx][ny] = 1
-                            q.append((nx,ny))
-                            n += 1
-                    print(visited)
-
-    print("n:",n)
-    print(dist)
+                            q.append((dis,nx,ny))
     return dist
 
 N = int(input())
@@ -57,11 +49,22 @@ for i in range(N):
             baby = (size,i,j) # 상어 위치
 time = 0
 mama = 1
+eat = 0
 while mama:
     size1, x1, y1 = baby
     feeds = bfs(baby)
-    print("feeds :",feeds)
-    # feeds = sorted(feeds, key = lambda)
     if not feeds:
         mama = 0
         break
+    feeds.sort()
+    d,n_x,n_y = feeds[0]
+    new_size = size1
+    eat += 1
+    if eat == new_size:
+        eat = 0
+        new_size += 1
+    baby = (new_size,n_x,n_y)
+    sea[n_x][n_y] = 9
+    sea[x1][y1] = 0
+    time += d
+print(time)
