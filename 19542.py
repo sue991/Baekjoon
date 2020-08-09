@@ -2,8 +2,6 @@ N,S,D = map(int, input().split())
 relationship = [[] for _ in range(N)]
 
 def dfs(x,l):
-    
-
 
 
 for _ in range(N):
