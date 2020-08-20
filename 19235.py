@@ -3,11 +3,6 @@ input = sys.stdin.readline
 
 score = 0
 
-def print_board():
-    for i in board:
-        for j in i:
-            print(j,end=" ")
-        print()
 def test():
     for i in range(10):
         for j in range(10):
