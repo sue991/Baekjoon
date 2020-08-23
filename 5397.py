@@ -1,5 +1,6 @@
 from collections import deque
 T = int(input())
+
 for _ in range(T):
     pwd = deque()
     tmp = deque()
