@@ -16,5 +16,4 @@ for i in range(N):
             break
     if chk:
         room.append(conference[i][1])
-
 print(len(room))
