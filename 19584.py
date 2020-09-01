@@ -20,5 +20,5 @@ for u,v,c in road:
     else:
         for i in range(place[p[v][1]],place[p[u][1]]):
             ans[i] += c
-
+            
 print(max(ans))
