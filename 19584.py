@@ -4,21 +4,30 @@ input = sys.stdin.readline
 N,M = map(int, input().split())
 p = [list(map(int, input().split())) for _ in range(N)]
 road = list(map(int, input().split()) for _ in range(M))
-pl = []
-for x,y in p:   pl.append(y)
-pl = list(set(pl))
-place = {}
-for i,x in enumerate(pl):
-    place[x] = i
-ans = [0 for _ in range(len(place)-1)]
+place = [] #y값만
+for x,y in p:   place.append(y)
+ans = {}
 
 for u,v,c in road:
     u -= 1 ; v -= 1
-    if p[u][1] <= p[v][1]:
-        for i in range(place[p[u][1]],place[p[v][1]]):
-            ans[i] += c
+    if place[v] < place[u]:
+        u,v = v,u 
+
+    if place[u] in ans:
+        ans[place[u]] += c
     else:
-        for i in range(place[p[v][1]],place[p[u][1]]):
-            ans[i] += c
-            
-print(max(ans))
+        ans[place[u]] = c
+    
+    if place[v]+1 in ans:
+        ans[place[v]+1] -= c
+    else:
+        ans[place[v]+1] = -c
+
+ans = sorted(ans.items())
+
+n = 0
+tmp = 0
+for x,y in ans:
+    tmp += y
+    n = max(tmp,n)
+print(n)
