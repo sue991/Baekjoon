@@ -7,7 +7,6 @@ for p in range(2, int(1000001**0.5)+1):
         for q in range(2*p, 1000001, p):
             sieve[q] = 0
 
-
 while True:
     n = int(sys.stdin.readline())
     if n == 0: break
