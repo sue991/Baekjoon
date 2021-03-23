@@ -11,7 +11,7 @@ def TSP(now, visited):
     cost = sys.maxsize
 
     for i in range(1,N):
-        if not (visited >> i)%2 and W[now][i]: # 빙문한 적이 없고, 길이 있을 때
+        if not (visited >> i)%2 and W[now][i]: # 방문한 적이 없고, 길이 있을 때
             tmp = TSP(i, visited|(1<<i))
             cost = min(cost, tmp + W[now][i])
 
@@ -25,4 +25,3 @@ W = [list(map(int, input().split())) for _ in range(N)]
 dp = [[0]*(1<<N) for _ in range(N)]
 
 print(TSP(0,1))
-
